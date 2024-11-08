@@ -1,16 +1,16 @@
+// Al recargar la pag inicia la funcion
 document.addEventListener("DOMContentLoaded", function() {
-    const divContainer = document.getElementById('tablaBody');  // Contenedor de la tabla
 
     // Función para obtener los productos desde la API
     function obtenerProducts() {
-        return fetch('http://localhost:8000/api/productos')  // Cambié la URL al puerto correcto
-            .then((res) => res.json())  // Convertimos la respuesta en JSON
+        return fetch('http://localhost:8000/api/productos')
+            .then((res) => res.json())
             .then((data) => {
-                return data;  // Retornamos los productos
+                return data;
             })
             .catch((error) => {
-                console.error('Error al obtener productos:', error);  // En caso de error, lo mostramos en la consola
-                return [];  // Retornamos un array vacío si ocurre un error
+                console.error('Error al obtener productos:', error);
+                return [];
             });
     }
 
@@ -18,23 +18,23 @@ document.addEventListener("DOMContentLoaded", function() {
     function cargarProducts() {
         obtenerProducts()
             .then(products => {
-                const tblBody = document.getElementById('tablaBody');  // Contenedor donde se agregan las filas
+                const tblBody = document.getElementById('tablaBody');
                 
                 // Limpiar la tabla antes de agregar los productos
                 tblBody.innerHTML = '';
 
-                // Llenamos la tabla con los productos obtenidos
+                // Llenar la tabla con los productos obtenidos
                 products.forEach(producto => {
-                    const row = document.createElement('tr');  // Creamos una nueva fila <tr>
+                    const row = document.createElement('tr');
                     
                     // Crear celdas para cada propiedad del producto
                     row.innerHTML = `
-                        <td>${producto.title}</td>  <!-- Cambié 'nombre' por 'title' -->
-                        <td>${producto.price}</td>  <!-- Cambié 'precio' por 'price' -->
+                        <td>${producto.nombre}</td>  <!-- Cambié 'nombre' por 'title' -->
+                        <td>${producto.precio}</td>  <!-- Cambié 'precio' por 'price' -->
                         <td>${producto.stock}</td>  <!-- Asegúrate que 'stock' exista en la API, o usa un valor predeterminado -->
                     `;
                     
-                    tblBody.appendChild(row);  // Agregamos la fila a la tabla
+                    tblBody.appendChild(row);
                 });
             })
             .catch((error) => {
@@ -45,22 +45,22 @@ document.addEventListener("DOMContentLoaded", function() {
     // Función para ordenar la tabla según el precio
     function ordenarTabla(orden) {
         const tabla = document.getElementById("tablaBody");
-        const filas = Array.from(tabla.rows);  // Convertimos las filas en un array para poder manipularlas
+        const filas = Array.from(tabla.rows);
         
         // Ordenar las filas por precio
         filas.sort((filaA, filaB) => {
-            const precioA = parseFloat(filaA.cells[1].textContent); // Tomamos el precio de la fila A
-            const precioB = parseFloat(filaB.cells[1].textContent); // Tomamos el precio de la fila B
+            const precioA = parseFloat(filaA.cells[1].textContent);
+            const precioB = parseFloat(filaB.cells[1].textContent);
             
             if (orden === 'ascendente') {
-                return precioA - precioB;  // Ascendente: menor a mayor
+                return precioA - precioB;
             } else {
-                return precioB - precioA;  // Descendente: mayor a menor
+                return precioB - precioA;
             }
         });
 
         // Limpiar el cuerpo de la tabla y agregar las filas ordenadas
-        filas.forEach(fila => tabla.appendChild(fila));  // Re-ordenamos las filas en la tabla
+        filas.forEach(fila => tabla.appendChild(fila));
     }
 
     // Cargar los productos al cargar la página
@@ -68,10 +68,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Asocia los botones de ordenación con la función de ordenar
     document.getElementById('ascendente').addEventListener('click', function() {
-        ordenarTabla('ascendente');  // Orden ascendente por precio
+        ordenarTabla('ascendente');
     });
 
     document.getElementById('descendente').addEventListener('click', function() {
-        ordenarTabla('descendente');  // Orden descendente por precio
+        ordenarTabla('descendente');
     });
 });

@@ -1,15 +1,17 @@
 const productosDB = require('../productsDB.json');
 const express = require('express');
-const path = require('path');
+const cors = require('cors');
 
 const products = productosDB.productos;
 const app = express();
 
-app.use(express.json);
+app.use(express.json());
+
+app.use(cors());
 
 // localhost
 app.get('/', (req, res) => {
-    res.send('Wellcome!!');
+    res.send('wellcome to api');
 })
 
 // Muestra todos los productos
@@ -32,7 +34,7 @@ app.post('/api/productos', (req, res) => {
         nombre: req.body.nombre,
         precio: req.body.precio,
         stock: req.body.stock,
-        fecha_agregado: `${hora.getFullYear()}-${hora.getMonth() + 1}-${hora.getDate()}`
+        fecha_agregado: `${hora.getFullYear()}-${hora.getMonth()}-${hora.getDate()}`
     }
     products.push(product);
     res.status(201).send(product);
