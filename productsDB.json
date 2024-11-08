@@ -1,0 +1,39 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Camiseta de Algodón",
+      "precio": 19.99,
+      "stock": 150,
+      "fecha_agregado": "2024-10-20"
+    },
+    {
+      "id": 2,
+      "nombre": "Zapatillas Running Pro",
+      "precio": 89.99,
+      "stock": 75,
+      "fecha_agregado": "2024-09-15"
+    },
+    {
+      "id": 3,
+      "nombre": "Auriculares Inalámbricos Pro",
+      "precio": 129.99,
+      "stock": 50,
+      "fecha_agregado": "2024-11-01"
+    },
+    {
+      "id": 4,
+      "nombre": "Smartwatch X1",
+      "precio": 199.99,
+      "stock": 30,
+      "fecha_agregado": "2024-10-10"
+    },
+    {
+      "id": 5,
+      "nombre": "Cargador Solar Portátil",
+      "precio": 34.99,
+      "stock": 200,
+      "fecha_agregado": "2024-08-05"
+    }
+  ]
+}
